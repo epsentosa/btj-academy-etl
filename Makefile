@@ -11,10 +11,6 @@ help:
 run-main:
 	python pipeline/etl/main.py run start-etl
 
-setup:
-	pip install -r pipeline/requirements.txt
-	alembic -c pipeline/alembic.ini upgrade head
-
 service-start:
 	docker-compose up -d
 
@@ -24,6 +20,11 @@ service-stop:
 service-restart:
 	docker-compose down
 	docker-compose up -d
+
+setup:
+	pip install -r pipeline/requirements.txt
+	alembic -c pipeline/alembic.ini upgrade head
+	@cd processor && go mod tidy
 
 test:
 	@docker exec -it btj-redis redis-cli flushall
