@@ -9,33 +9,38 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC, 6, 31, 0, "", "transform.proto"
+    _runtime_version.Domain.PUBLIC,
+    6,
+    31,
+    0,
+    '',
+    'transform.proto'
 )
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n\x0ftransform.proto\x1a\x1fgoogle/protobuf/timestamp.proto"@\n\x10InputFileRequest\x12\x12\n\ninput_file\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t"\xca\x01\n\x13ProcessFileResponse\x12\x12\n\ntotal_rows\x18\x01 \x01(\x03\x12\x14\n\x0c\x64ropped_rows\x18\x02 \x01(\x03\x12\x16\n\x0eprocessed_rows\x18\x03 \x01(\x03\x12\x15\n\rinserted_rows\x18\x04 \x01(\x03\x12,\n\x08max_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08min_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp"+\n\x14InputFileTestRequest\x12\x13\n\x0blocation_id\x18\x01 \x01(\x03"N\n\x17ProcessFileTestResponse\x12\x0f\n\x07\x62orough\x18\x01 \x01(\t\x12\x0c\n\x04zone\x18\x02 \x01(\t\x12\x14\n\x0cservice_zone\x18\x03 \x01(\t2\x94\x01\n\x10TransformService\x12;\n\x0eProcessNYCTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse"\x00\x12\x43\n\x0eProcessTesting\x12\x15.InputFileTestRequest\x1a\x18.ProcessFileTestResponse"\x00\x42\x19Z\x17processor/protos;protosb\x06proto3'
-)
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
+
+
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ftransform.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"@\n\x10InputFileRequest\x12\x12\n\ninput_file\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t\"\xca\x01\n\x13ProcessFileResponse\x12\x12\n\ntotal_rows\x18\x01 \x01(\x03\x12\x14\n\x0c\x64ropped_rows\x18\x02 \x01(\x03\x12\x16\n\x0eprocessed_rows\x18\x03 \x01(\x03\x12\x15\n\rinserted_rows\x18\x04 \x01(\x03\x12,\n\x08max_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08min_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"+\n\x14InputFileTestRequest\x12\x13\n\x0blocation_id\x18\x01 \x01(\x03\"N\n\x17ProcessFileTestResponse\x12\x0f\n\x07\x62orough\x18\x01 \x01(\t\x12\x0c\n\x04zone\x18\x02 \x01(\t\x12\x14\n\x0cservice_zone\x18\x03 \x01(\t2\x94\x01\n\x10TransformService\x12;\n\x0eProcessNYCTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12\x43\n\x0eProcessTesting\x12\x15.InputFileTestRequest\x1a\x18.ProcessFileTestResponse\"\x00\x42\x19Z\x17processor/protos;protosb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "transform_pb2", _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'transform_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-    _globals["DESCRIPTOR"]._loaded_options = None
-    _globals["DESCRIPTOR"]._serialized_options = b"Z\027processor/protos;protos"
-    _globals["_INPUTFILEREQUEST"]._serialized_start = 52
-    _globals["_INPUTFILEREQUEST"]._serialized_end = 116
-    _globals["_PROCESSFILERESPONSE"]._serialized_start = 119
-    _globals["_PROCESSFILERESPONSE"]._serialized_end = 321
-    _globals["_INPUTFILETESTREQUEST"]._serialized_start = 323
-    _globals["_INPUTFILETESTREQUEST"]._serialized_end = 366
-    _globals["_PROCESSFILETESTRESPONSE"]._serialized_start = 368
-    _globals["_PROCESSFILETESTRESPONSE"]._serialized_end = 446
-    _globals["_TRANSFORMSERVICE"]._serialized_start = 449
-    _globals["_TRANSFORMSERVICE"]._serialized_end = 597
+  _globals['DESCRIPTOR']._loaded_options = None
+  _globals['DESCRIPTOR']._serialized_options = b'Z\027processor/protos;protos'
+  _globals['_INPUTFILEREQUEST']._serialized_start=52
+  _globals['_INPUTFILEREQUEST']._serialized_end=116
+  _globals['_PROCESSFILERESPONSE']._serialized_start=119
+  _globals['_PROCESSFILERESPONSE']._serialized_end=321
+  _globals['_INPUTFILETESTREQUEST']._serialized_start=323
+  _globals['_INPUTFILETESTREQUEST']._serialized_end=366
+  _globals['_PROCESSFILETESTRESPONSE']._serialized_start=368
+  _globals['_PROCESSFILETESTRESPONSE']._serialized_end=446
+  _globals['_TRANSFORMSERVICE']._serialized_start=449
+  _globals['_TRANSFORMSERVICE']._serialized_end=597
 # @@protoc_insertion_point(module_scope)

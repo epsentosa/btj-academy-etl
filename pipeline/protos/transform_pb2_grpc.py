@@ -4,26 +4,23 @@ import grpc
 
 from pipeline.protos import transform_pb2 as transform__pb2
 
-GRPC_GENERATED_VERSION = "1.73.1"
+GRPC_GENERATED_VERSION = '1.73.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
 try:
     from grpc._utilities import first_version_is_lower
-
-    _version_not_supported = first_version_is_lower(
-        GRPC_VERSION, GRPC_GENERATED_VERSION
-    )
+    _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)
 except ImportError:
     _version_not_supported = True
 
 if _version_not_supported:
     raise RuntimeError(
-        f"The grpc package installed is at version {GRPC_VERSION},"
-        + " but the generated code in transform_pb2_grpc.py depends on"
-        + f" grpcio>={GRPC_GENERATED_VERSION}."
-        + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
-        + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
+        f'The grpc package installed is at version {GRPC_VERSION},'
+        + ' but the generated code in transform_pb2_grpc.py depends on'
+        + f' grpcio>={GRPC_GENERATED_VERSION}.'
+        + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
+        + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
@@ -37,17 +34,15 @@ class TransformServiceStub(object):
             channel: A grpc.Channel.
         """
         self.ProcessNYCTrip = channel.unary_unary(
-            "/TransformService/ProcessNYCTrip",
-            request_serializer=transform__pb2.InputFileRequest.SerializeToString,
-            response_deserializer=transform__pb2.ProcessFileResponse.FromString,
-            _registered_method=True,
-        )
+                '/TransformService/ProcessNYCTrip',
+                request_serializer=transform__pb2.InputFileRequest.SerializeToString,
+                response_deserializer=transform__pb2.ProcessFileResponse.FromString,
+                _registered_method=True)
         self.ProcessTesting = channel.unary_unary(
-            "/TransformService/ProcessTesting",
-            request_serializer=transform__pb2.InputFileTestRequest.SerializeToString,
-            response_deserializer=transform__pb2.ProcessFileTestResponse.FromString,
-            _registered_method=True,
-        )
+                '/TransformService/ProcessTesting',
+                request_serializer=transform__pb2.InputFileTestRequest.SerializeToString,
+                response_deserializer=transform__pb2.ProcessFileTestResponse.FromString,
+                _registered_method=True)
 
 
 class TransformServiceServicer(object):
@@ -56,57 +51,55 @@ class TransformServiceServicer(object):
     def ProcessNYCTrip(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def ProcessTesting(self, request, context):
-        """For Testing Load Map"""
+        """For Testing Load Map
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_TransformServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        "ProcessNYCTrip": grpc.unary_unary_rpc_method_handler(
-            servicer.ProcessNYCTrip,
-            request_deserializer=transform__pb2.InputFileRequest.FromString,
-            response_serializer=transform__pb2.ProcessFileResponse.SerializeToString,
-        ),
-        "ProcessTesting": grpc.unary_unary_rpc_method_handler(
-            servicer.ProcessTesting,
-            request_deserializer=transform__pb2.InputFileTestRequest.FromString,
-            response_serializer=transform__pb2.ProcessFileTestResponse.SerializeToString,
-        ),
+            'ProcessNYCTrip': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessNYCTrip,
+                    request_deserializer=transform__pb2.InputFileRequest.FromString,
+                    response_serializer=transform__pb2.ProcessFileResponse.SerializeToString,
+            ),
+            'ProcessTesting': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessTesting,
+                    request_deserializer=transform__pb2.InputFileTestRequest.FromString,
+                    response_serializer=transform__pb2.ProcessFileTestResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        "TransformService", rpc_method_handlers
-    )
+            'TransformService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers("TransformService", rpc_method_handlers)
+    server.add_registered_method_handlers('TransformService', rpc_method_handlers)
 
 
-# This class is part of an EXPERIMENTAL API.
+ # This class is part of an EXPERIMENTAL API.
 class TransformService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def ProcessNYCTrip(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
+    def ProcessNYCTrip(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/TransformService/ProcessNYCTrip",
+            '/TransformService/ProcessNYCTrip',
             transform__pb2.InputFileRequest.SerializeToString,
             transform__pb2.ProcessFileResponse.FromString,
             options,
@@ -117,26 +110,23 @@ class TransformService(object):
             wait_for_ready,
             timeout,
             metadata,
-            _registered_method=True,
-        )
+            _registered_method=True)
 
     @staticmethod
-    def ProcessTesting(
-        request,
-        target,
-        options=(),
-        channel_credentials=None,
-        call_credentials=None,
-        insecure=False,
-        compression=None,
-        wait_for_ready=None,
-        timeout=None,
-        metadata=None,
-    ):
+    def ProcessTesting(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/TransformService/ProcessTesting",
+            '/TransformService/ProcessTesting',
             transform__pb2.InputFileTestRequest.SerializeToString,
             transform__pb2.ProcessFileTestResponse.FromString,
             options,
@@ -147,5 +137,4 @@ class TransformService(object):
             wait_for_ready,
             timeout,
             metadata,
-            _registered_method=True,
-        )
+            _registered_method=True)

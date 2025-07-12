@@ -13,19 +13,10 @@ class InputFileRequest(_message.Message):
     REMOTE_FILE_PATH_FIELD_NUMBER: _ClassVar[int]
     input_file: str
     remote_file_path: str
-    def __init__(
-        self, input_file: _Optional[str] = ..., remote_file_path: _Optional[str] = ...
-    ) -> None: ...
+    def __init__(self, input_file: _Optional[str] = ..., remote_file_path: _Optional[str] = ...) -> None: ...
 
 class ProcessFileResponse(_message.Message):
-    __slots__ = (
-        "total_rows",
-        "dropped_rows",
-        "processed_rows",
-        "inserted_rows",
-        "max_time",
-        "min_time",
-    )
+    __slots__ = ("total_rows", "dropped_rows", "processed_rows", "inserted_rows", "max_time", "min_time")
     TOTAL_ROWS_FIELD_NUMBER: _ClassVar[int]
     DROPPED_ROWS_FIELD_NUMBER: _ClassVar[int]
     PROCESSED_ROWS_FIELD_NUMBER: _ClassVar[int]
@@ -38,19 +29,7 @@ class ProcessFileResponse(_message.Message):
     inserted_rows: int
     max_time: _timestamp_pb2.Timestamp
     min_time: _timestamp_pb2.Timestamp
-    def __init__(
-        self,
-        total_rows: _Optional[int] = ...,
-        dropped_rows: _Optional[int] = ...,
-        processed_rows: _Optional[int] = ...,
-        inserted_rows: _Optional[int] = ...,
-        max_time: _Optional[
-            _Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]
-        ] = ...,
-        min_time: _Optional[
-            _Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]
-        ] = ...,
-    ) -> None: ...
+    def __init__(self, total_rows: _Optional[int] = ..., dropped_rows: _Optional[int] = ..., processed_rows: _Optional[int] = ..., inserted_rows: _Optional[int] = ..., max_time: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., min_time: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class InputFileTestRequest(_message.Message):
     __slots__ = ("location_id",)
@@ -66,9 +45,4 @@ class ProcessFileTestResponse(_message.Message):
     borough: str
     zone: str
     service_zone: str
-    def __init__(
-        self,
-        borough: _Optional[str] = ...,
-        zone: _Optional[str] = ...,
-        service_zone: _Optional[str] = ...,
-    ) -> None: ...
+    def __init__(self, borough: _Optional[str] = ..., zone: _Optional[str] = ..., service_zone: _Optional[str] = ...) -> None: ...
