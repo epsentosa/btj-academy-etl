@@ -1,0 +1,49 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.1-management-alpine
+    container_name: btj-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:15672:15672"
+      - "127.0.0.1:5672:5672"
+    # volumes:
+    #   - ./dockervol/rabbitmq-data:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: btj-academy
+      RABBITMQ_DEFAULT_PASS: btj-academy
+      RABBITMQ_DEFAULT_VHOST: /
+      TZ: Asia/Jakarta
+  redis:
+    image: redis:8
+    container_name: btj-redis
+    ports:
+      - "127.0.0.1:6379:6379"
+    # volumes:
+    #   - ./dockervol/redis-data:/data
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Jakarta
+  postgres:
+    image: timescale/timescaledb:2.14.1-pg15
+    container_name: btj-timescale
+    ports:
+      - "127.0.0.1:5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./dockervol/postgres-data:/var/lib/postgresql/data
+    environment:
+      TZ: Asia/Jakarta
+      POSTGRES_USER: btj-academy
+      POSTGRES_PASSWORD: btj-academy
+      POSTGRES_DB: btj-academy
+  sftp:
+    image: atmoz/sftp
+    container_name: btj-sftp
+    ports:
+      - "127.0.0.1:2222:22"
+    restart: unless-stopped
+    volumes:
+      - ./dockervol/sftp-data:/home/btj-academy/upload
+    environment:
+      TZ: Asia/Jakarta
+      SFTP_USERS: btj-academy:btj-academy:::upload

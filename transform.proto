@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "processor/protos;protos";
+
+service TransformService {
+  rpc ProcessNYCTrip (InputFileRequest) returns (ProcessFileResponse) {}
+  // For Testing Load Map
+  rpc ProcessTesting (InputFileTestRequest) returns (ProcessFileTestResponse) {}
+}
+
+message InputFileRequest {
+  string input_file = 1;
+  string remote_file_path = 2;
+}
+
+message ProcessFileResponse {
+  int64 total_rows = 1;
+  int64 dropped_rows = 2;
+  int64 processed_rows = 3;
+  int64 inserted_rows = 4;
+  google.protobuf.Timestamp max_time = 5;
+  google.protobuf.Timestamp min_time = 6;
+}
+
+// For Testing Load Map
+message InputFileTestRequest {
+  int64 location_id = 1;
+}
+
+message ProcessFileTestResponse {
+  string borough = 1;
+  string zone = 2;
+  string service_zone = 3;
+}

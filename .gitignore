@@ -1,0 +1,11 @@
+.direnv
+.mypy_cache/
+.pytest_cache/
+dockervol/postgres-data
+dockervol/sftp-data/yellow-tripdata-2025-01.tsv
+.DS_Store
+__pycache__/
+*.pyc
+tmp/
+processor/tmp
+logs.log
