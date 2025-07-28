@@ -67,11 +67,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_URL: postgresql://btj-academy:btj-academy@postgres:5433/btj-academy
+      DB_URL: postgresql://btj-academy:btj-academy@postgres:5432/btj-academy
       REDIS_PM_HOST: redis
       REDIS_PM_DB: "1"
       LOG_LEVEL: INFO
-      VERSION: ${VERSION:-0.0.0-dev}
     depends_on:
       - postgres
       - redis
