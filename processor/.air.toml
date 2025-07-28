@@ -1,0 +1,5 @@
+# this air file is used for running inside container
+root = "."
+tmp_dir = "tmp"
+
+bin = "tmp/main"

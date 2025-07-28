@@ -13,6 +13,9 @@ services:
       RABBITMQ_DEFAULT_PASS: btj-academy
       RABBITMQ_DEFAULT_VHOST: /
       TZ: Asia/Jakarta
+    networks:
+      - btj-network
+
   redis:
     image: redis:8
     container_name: btj-redis
@@ -23,6 +26,9 @@ services:
     restart: unless-stopped
     environment:
       TZ: Asia/Jakarta
+    networks:
+      - btj-network
+
   postgres:
     image: timescale/timescaledb:2.14.1-pg15
     container_name: btj-timescale
@@ -36,6 +42,9 @@ services:
       POSTGRES_USER: btj-academy
       POSTGRES_PASSWORD: btj-academy
       POSTGRES_DB: btj-academy
+    networks:
+      - btj-network
+
   sftp:
     image: atmoz/sftp
     container_name: btj-sftp
@@ -47,3 +56,31 @@ services:
     environment:
       TZ: Asia/Jakarta
       SFTP_USERS: btj-academy:btj-academy:::upload
+    networks:
+      - btj-network
+
+  processor:
+    build:
+      context: ./processor
+      dockerfile: Dockerfile
+    container_name: btj-processor
+    ports:
+      - "3000:3000"
+    environment:
+      DB_URL: postgresql://btj-academy:btj-academy@postgres:5432/btj-academy
+      REDIS_PM_HOST: redis
+      REDIS_PM_DB: "1"
+      LOG_LEVEL: INFO
+      VERSION: ${VERSION:-0.0.0-dev}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - btj-network
+    volumes:
+      - ./processor:/app
+
+networks:
+  btj-network:
+    name: btj-network
+    driver: bridge
