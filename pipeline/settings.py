@@ -18,13 +18,15 @@ class PostgresSettings(DatabaseSettings):
     POSTGRES_USER: str = config("POSTGRES_USER", default="btj-academy")
     POSTGRES_PASSWORD: str = config("POSTGRES_PASSWORD", default="btj-academy")
     POSTGRES_SERVER: str = config("POSTGRES_SERVER", default="localhost")
-    POSTGRES_PORT: int = config("POSTGRES_PORT", default=5432)
+    POSTGRES_PORT: int = config("POSTGRES_PORT", default=5433)
     POSTGRES_DB: str = config("POSTGRES_DB", default="btj-academy")
     POSTGRES_SYNC_PREFIX: str = config("POSTGRES_SYNC_PREFIX", default="postgresql://")
     POSTGRES_ASYNC_PREFIX: str = config(
         "POSTGRES_ASYNC_PREFIX", default="postgresql+asyncpg://"
     )
-    POSTGRES_URI: str = f"{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    POSTGRES_URI: str = (
+        f"{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    )
     POSTGRES_URL: str | None = config("POSTGRES_URL", default=None)
 
 
@@ -41,7 +43,9 @@ class RabbitMQSettings(BaseSettings):
     RABBITMQ_USER: str = config("RABBITMQ_USER", default="btj-academy")
     RABBITMQ_PASSWORD: str = config("RABBITMQ_PASSWORD", default="btj-academy")
     RABBITMQ_VHOST: str = config("RABBITMQ_VHOST", default="/")
-    RABBITMQ_URL: str = f"amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}{RABBITMQ_VHOST}"
+    RABBITMQ_URL: str = (
+        f"amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}{RABBITMQ_VHOST}"
+    )
 
 
 class GrpcSettings(BaseSettings):

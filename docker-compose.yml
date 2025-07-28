@@ -33,7 +33,7 @@ services:
     image: timescale/timescaledb:2.14.1-pg15
     container_name: btj-timescale
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:5433:5432"
     restart: unless-stopped
     volumes:
       - ./dockervol/postgres-data:/var/lib/postgresql/data
@@ -67,7 +67,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_URL: postgresql://btj-academy:btj-academy@postgres:5432/btj-academy
+      DB_URL: postgresql://btj-academy:btj-academy@postgres:5433/btj-academy
       REDIS_PM_HOST: redis
       REDIS_PM_DB: "1"
       LOG_LEVEL: INFO
