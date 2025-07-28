@@ -1,3 +1,4 @@
+# this air file is used for local running, run `air` on current path, works on Linux and MacOs
 [build]
 cmd = "go build -C processor -o ./tmp/main"
 full_bin = "DB_URL=postgresql://btj-academy:btj-academy@localhost:5432/btj-academy REDIS_PM_HOST=127.0.0.1 REDIS_PM_DB=1 ./processor/tmp/main"
