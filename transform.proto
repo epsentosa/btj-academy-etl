@@ -6,6 +6,7 @@ option go_package = "processor/protos;protos";
 
 service TransformService {
   rpc ProcessNYCTrip (InputFileRequest) returns (ProcessFileResponse) {}
+  rpc ProcessChicagoTrip (InputFileRequest) returns (ProcessFileResponse) {}
   // For Testing Load Map
   rpc ProcessTesting (InputFileTestRequest) returns (ProcessFileTestResponse) {}
 }

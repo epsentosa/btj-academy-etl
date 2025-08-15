@@ -17,6 +17,9 @@ class ETLType:
         class NYCTrip(_ConfBase):
             db_table = "nyc_trip"
 
+        class ChicagoTrip(_ConfBase):
+            db_table = "chicago_trip"
+
     def __init__(self, etl_type: str):
         self.type_str = etl_type
         self.conf = self.__get_config()

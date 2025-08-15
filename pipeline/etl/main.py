@@ -14,11 +14,21 @@ def main() -> None:
             "start-etl",
         ],
     )
+    parser_run.add_argument(
+        "config",
+        choices=[
+            "nyc_trip",
+            "chicago_trip",
+        ],
+    )
 
     args, unknownargs = parser.parse_known_args()
 
     if args.subparser_name == "run" and args.mode == "start-etl":
-        etl_type: ETLType = ETLType("NYCTrip")
+        if args.config == "nyc_trip":
+            etl_type: ETLType = ETLType("NYCTrip")
+        elif args.config == "chicago_trip":
+            etl_type = ETLType("ChicagoTrip")
 
         app.signature("pipeline.etl.etl.remote_check").apply_async(
             kwargs={"etl_type": etl_type}, queue="etl"

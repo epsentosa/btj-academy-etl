@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TransformService_ProcessNYCTrip_FullMethodName = "/TransformService/ProcessNYCTrip"
-	TransformService_ProcessTesting_FullMethodName = "/TransformService/ProcessTesting"
+	TransformService_ProcessNYCTrip_FullMethodName     = "/TransformService/ProcessNYCTrip"
+	TransformService_ProcessChicagoTrip_FullMethodName = "/TransformService/ProcessChicagoTrip"
+	TransformService_ProcessTesting_FullMethodName     = "/TransformService/ProcessTesting"
 )
 
 // TransformServiceClient is the client API for TransformService service.
@@ -28,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransformServiceClient interface {
 	ProcessNYCTrip(ctx context.Context, in *InputFileRequest, opts ...grpc.CallOption) (*ProcessFileResponse, error)
+	ProcessChicagoTrip(ctx context.Context, in *InputFileRequest, opts ...grpc.CallOption) (*ProcessFileResponse, error)
 	// For Testing Load Map
 	ProcessTesting(ctx context.Context, in *InputFileTestRequest, opts ...grpc.CallOption) (*ProcessFileTestResponse, error)
 }
@@ -50,6 +52,16 @@ func (c *transformServiceClient) ProcessNYCTrip(ctx context.Context, in *InputFi
 	return out, nil
 }
 
+func (c *transformServiceClient) ProcessChicagoTrip(ctx context.Context, in *InputFileRequest, opts ...grpc.CallOption) (*ProcessFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProcessFileResponse)
+	err := c.cc.Invoke(ctx, TransformService_ProcessChicagoTrip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *transformServiceClient) ProcessTesting(ctx context.Context, in *InputFileTestRequest, opts ...grpc.CallOption) (*ProcessFileTestResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProcessFileTestResponse)
@@ -65,6 +77,7 @@ func (c *transformServiceClient) ProcessTesting(ctx context.Context, in *InputFi
 // for forward compatibility.
 type TransformServiceServer interface {
 	ProcessNYCTrip(context.Context, *InputFileRequest) (*ProcessFileResponse, error)
+	ProcessChicagoTrip(context.Context, *InputFileRequest) (*ProcessFileResponse, error)
 	// For Testing Load Map
 	ProcessTesting(context.Context, *InputFileTestRequest) (*ProcessFileTestResponse, error)
 	mustEmbedUnimplementedTransformServiceServer()
@@ -79,6 +92,9 @@ type UnimplementedTransformServiceServer struct{}
 
 func (UnimplementedTransformServiceServer) ProcessNYCTrip(context.Context, *InputFileRequest) (*ProcessFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessNYCTrip not implemented")
+}
+func (UnimplementedTransformServiceServer) ProcessChicagoTrip(context.Context, *InputFileRequest) (*ProcessFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProcessChicagoTrip not implemented")
 }
 func (UnimplementedTransformServiceServer) ProcessTesting(context.Context, *InputFileTestRequest) (*ProcessFileTestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessTesting not implemented")
@@ -122,6 +138,24 @@ func _TransformService_ProcessNYCTrip_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransformService_ProcessChicagoTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InputFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransformServiceServer).ProcessChicagoTrip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransformService_ProcessChicagoTrip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransformServiceServer).ProcessChicagoTrip(ctx, req.(*InputFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TransformService_ProcessTesting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InputFileTestRequest)
 	if err := dec(in); err != nil {
@@ -150,6 +184,10 @@ var TransformService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProcessNYCTrip",
 			Handler:    _TransformService_ProcessNYCTrip_Handler,
+		},
+		{
+			MethodName: "ProcessChicagoTrip",
+			Handler:    _TransformService_ProcessChicagoTrip_Handler,
 		},
 		{
 			MethodName: "ProcessTesting",

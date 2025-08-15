@@ -8,6 +8,7 @@ import (
 	"syscall"
 
 	"processor/handler"
+	"processor/handler/chicago_trip"
 	"processor/handler/nyc_trip"
 	"processor/lib"
 	"processor/logger"
@@ -28,12 +29,14 @@ func runGrpcServer(cfg *config, dbConn *pgxpool.Pool, mapId *lib.MapId) {
 	}
 
 	inputFileNYCTrip := nyc_trip.NewInputFile(cfg.RedisHost, cfg.RedisDB, dbConn, mapId)
+	inputFileChicagoTrip := chicago_trip.NewInputFile(cfg.RedisHost, cfg.RedisDB, dbConn, mapId)
 	InputFileTesting := handler.NewInputFileTesting(mapId)
 
 	s := grpc.NewServer()
 	pb.RegisterTransformServiceServer(s, &handler.InputFileHandler{
-		InputFileNYCTrip: inputFileNYCTrip,
-		InputFileTesting: InputFileTesting,
+		InputFileNYCTrip:     inputFileNYCTrip,
+		InputFileChicagoTrip: inputFileChicagoTrip,
+		InputFileTesting:     InputFileTesting,
 	})
 	logger.Info("server listening at", zap.Any("listener", lis.Addr()))
 	if err := s.Serve(lis); err != nil {

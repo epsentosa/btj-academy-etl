@@ -286,9 +286,10 @@ const file_transform_proto_rawDesc = "" +
 	"\x17ProcessFileTestResponse\x12\x18\n" +
 	"\aborough\x18\x01 \x01(\tR\aborough\x12\x12\n" +
 	"\x04zone\x18\x02 \x01(\tR\x04zone\x12!\n" +
-	"\fservice_zone\x18\x03 \x01(\tR\vserviceZone2\x94\x01\n" +
+	"\fservice_zone\x18\x03 \x01(\tR\vserviceZone2\xd5\x01\n" +
 	"\x10TransformService\x12;\n" +
-	"\x0eProcessNYCTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12C\n" +
+	"\x0eProcessNYCTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12?\n" +
+	"\x12ProcessChicagoTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12C\n" +
 	"\x0eProcessTesting\x12\x15.InputFileTestRequest\x1a\x18.ProcessFileTestResponse\"\x00B\x19Z\x17processor/protos;protosb\x06proto3"
 
 var (
@@ -315,11 +316,13 @@ var file_transform_proto_depIdxs = []int32{
 	4, // 0: ProcessFileResponse.max_time:type_name -> google.protobuf.Timestamp
 	4, // 1: ProcessFileResponse.min_time:type_name -> google.protobuf.Timestamp
 	0, // 2: TransformService.ProcessNYCTrip:input_type -> InputFileRequest
-	2, // 3: TransformService.ProcessTesting:input_type -> InputFileTestRequest
-	1, // 4: TransformService.ProcessNYCTrip:output_type -> ProcessFileResponse
-	3, // 5: TransformService.ProcessTesting:output_type -> ProcessFileTestResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
+	0, // 3: TransformService.ProcessChicagoTrip:input_type -> InputFileRequest
+	2, // 4: TransformService.ProcessTesting:input_type -> InputFileTestRequest
+	1, // 5: TransformService.ProcessNYCTrip:output_type -> ProcessFileResponse
+	1, // 6: TransformService.ProcessChicagoTrip:output_type -> ProcessFileResponse
+	3, // 7: TransformService.ProcessTesting:output_type -> ProcessFileTestResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name

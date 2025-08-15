@@ -15,6 +15,12 @@ from pipeline.settings import settings
 logger = logging.getLogger(__name__)
 
 
+SERVICE_METHOD: dict[str, str] = {
+    "NYCTrip": "ProcessNYCTrip",
+    "ChicagoTrip": "ProcessChicagoTrip",
+}
+
+
 class TaskBase(Task):
     @staticmethod
     def connect_sftp(host_info: dict) -> pysftp.Connection:
@@ -39,7 +45,8 @@ class TaskBase(Task):
         try:
             with grpc.insecure_channel(settings.GRPC_URL, options=options) as channel:
                 stub = TransformServiceStub(channel)
-                response = stub.ProcessNYCTrip(
+                method = getattr(stub, SERVICE_METHOD[etl_state.conf.type_str])
+                response = method(
                     InputFileRequest(
                         input_file=etl_state.local_file_path,
                         remote_file_path=etl_state.remote_file_path,

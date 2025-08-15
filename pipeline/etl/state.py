@@ -8,6 +8,8 @@ class ETLState:
         self.conf: ETLType = etl_conf
         self._start_process: datetime.datetime = datetime.datetime.now()
         self._finish_process: datetime.datetime | None = None
+        self._start_date: str | None = None
+        self._end_date: str | None = None
         self._remote_file_path: str | None = None
         self._local_file_path: str | None = None
 
@@ -15,6 +17,22 @@ class ETLState:
     def total_process(self) -> float:
         self._finish_process = datetime.datetime.now()
         return (self._finish_process - self._start_process).total_seconds()
+
+    @property
+    def start_date(self) -> str | None:
+        return self._start_date
+
+    @start_date.setter
+    def start_date(self, start_date) -> None:
+        self._start_date = start_date
+
+    @property
+    def end_date(self) -> str | None:
+        return self._end_date
+
+    @end_date.setter
+    def end_date(self, end_date) -> None:
+        self._end_date = end_date
 
     @property
     def remote_file_path(self) -> str | None:

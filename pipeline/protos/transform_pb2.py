@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ftransform.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"@\n\x10InputFileRequest\x12\x12\n\ninput_file\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t\"\xca\x01\n\x13ProcessFileResponse\x12\x12\n\ntotal_rows\x18\x01 \x01(\x03\x12\x14\n\x0c\x64ropped_rows\x18\x02 \x01(\x03\x12\x16\n\x0eprocessed_rows\x18\x03 \x01(\x03\x12\x15\n\rinserted_rows\x18\x04 \x01(\x03\x12,\n\x08max_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08min_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"+\n\x14InputFileTestRequest\x12\x13\n\x0blocation_id\x18\x01 \x01(\x03\"N\n\x17ProcessFileTestResponse\x12\x0f\n\x07\x62orough\x18\x01 \x01(\t\x12\x0c\n\x04zone\x18\x02 \x01(\t\x12\x14\n\x0cservice_zone\x18\x03 \x01(\t2\x94\x01\n\x10TransformService\x12;\n\x0eProcessNYCTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12\x43\n\x0eProcessTesting\x12\x15.InputFileTestRequest\x1a\x18.ProcessFileTestResponse\"\x00\x42\x19Z\x17processor/protos;protosb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ftransform.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"@\n\x10InputFileRequest\x12\x12\n\ninput_file\x18\x01 \x01(\t\x12\x18\n\x10remote_file_path\x18\x02 \x01(\t\"\xca\x01\n\x13ProcessFileResponse\x12\x12\n\ntotal_rows\x18\x01 \x01(\x03\x12\x14\n\x0c\x64ropped_rows\x18\x02 \x01(\x03\x12\x16\n\x0eprocessed_rows\x18\x03 \x01(\x03\x12\x15\n\rinserted_rows\x18\x04 \x01(\x03\x12,\n\x08max_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08min_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"+\n\x14InputFileTestRequest\x12\x13\n\x0blocation_id\x18\x01 \x01(\x03\"N\n\x17ProcessFileTestResponse\x12\x0f\n\x07\x62orough\x18\x01 \x01(\t\x12\x0c\n\x04zone\x18\x02 \x01(\t\x12\x14\n\x0cservice_zone\x18\x03 \x01(\t2\xd5\x01\n\x10TransformService\x12;\n\x0eProcessNYCTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12?\n\x12ProcessChicagoTrip\x12\x11.InputFileRequest\x1a\x14.ProcessFileResponse\"\x00\x12\x43\n\x0eProcessTesting\x12\x15.InputFileTestRequest\x1a\x18.ProcessFileTestResponse\"\x00\x42\x19Z\x17processor/protos;protosb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,5 +42,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_PROCESSFILETESTRESPONSE']._serialized_start=368
   _globals['_PROCESSFILETESTRESPONSE']._serialized_end=446
   _globals['_TRANSFORMSERVICE']._serialized_start=449
-  _globals['_TRANSFORMSERVICE']._serialized_end=597
+  _globals['_TRANSFORMSERVICE']._serialized_end=662
 # @@protoc_insertion_point(module_scope)

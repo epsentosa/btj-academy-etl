@@ -66,3 +66,43 @@ class NycTrip(Base):
     total_amount = Column(Float)
     congestion_surcharge = Column(Float)
     airport_fee = Column(Float)
+
+
+class ETLStateSummary(Base):
+    __tablename__ = "etl_state_summary"
+    id = Column(Integer, autoincrement=True, primary_key=True)
+    config_type = Column(String)
+    state = Column(String)
+    host = Column(String)
+    file_datetime = Column(DateTime, nullable=False)
+    latest_modified_time = Column(DateTime, nullable=False)
+    queue_on = Column(DateTime, nullable=False)
+    finished_on = Column(DateTime)
+    duration = Column(Integer)
+    record_count = Column(Integer)
+
+
+class ChicagoTrip(Base):
+    __tablename__ = "chicago_trip"
+    __table_args__ = (
+        Index(
+            "ix_chicago_trip_time",
+            "trip_start",
+            "trip_end",
+        ),
+    )
+    # The primary_key kwargs is a lie, the table doesn't actually have primary key, only for SQLAlchemy requirement
+    trip_start = Column(DateTime, primary_key=True)
+    trip_end = Column(DateTime)
+    trip_miles = Column(Float)
+    fare = Column(Float)
+    tips = Column(Float)
+    tolls = Column(Float)
+    extras = Column(Float)
+    trip_total = Column(Float)
+    payment_type = Column(String)
+    company = Column(String)
+    pickup_centroid_latitude = Column(String)
+    pickup_centroid_longitude = Column(String)
+    dropoff_centroid_latitude = Column(String)
+    dropoff_centroid_longitude = Column(String)

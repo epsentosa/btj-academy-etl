@@ -38,6 +38,11 @@ class TransformServiceStub(object):
                 request_serializer=transform__pb2.InputFileRequest.SerializeToString,
                 response_deserializer=transform__pb2.ProcessFileResponse.FromString,
                 _registered_method=True)
+        self.ProcessChicagoTrip = channel.unary_unary(
+                '/TransformService/ProcessChicagoTrip',
+                request_serializer=transform__pb2.InputFileRequest.SerializeToString,
+                response_deserializer=transform__pb2.ProcessFileResponse.FromString,
+                _registered_method=True)
         self.ProcessTesting = channel.unary_unary(
                 '/TransformService/ProcessTesting',
                 request_serializer=transform__pb2.InputFileTestRequest.SerializeToString,
@@ -49,6 +54,12 @@ class TransformServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ProcessNYCTrip(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ProcessChicagoTrip(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -66,6 +77,11 @@ def add_TransformServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ProcessNYCTrip': grpc.unary_unary_rpc_method_handler(
                     servicer.ProcessNYCTrip,
+                    request_deserializer=transform__pb2.InputFileRequest.FromString,
+                    response_serializer=transform__pb2.ProcessFileResponse.SerializeToString,
+            ),
+            'ProcessChicagoTrip': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessChicagoTrip,
                     request_deserializer=transform__pb2.InputFileRequest.FromString,
                     response_serializer=transform__pb2.ProcessFileResponse.SerializeToString,
             ),
@@ -100,6 +116,33 @@ class TransformService(object):
             request,
             target,
             '/TransformService/ProcessNYCTrip',
+            transform__pb2.InputFileRequest.SerializeToString,
+            transform__pb2.ProcessFileResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ProcessChicagoTrip(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/TransformService/ProcessChicagoTrip',
             transform__pb2.InputFileRequest.SerializeToString,
             transform__pb2.ProcessFileResponse.FromString,
             options,

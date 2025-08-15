@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 
+	"processor/handler/chicago_trip"
 	"processor/handler/nyc_trip"
 	"processor/lib"
 	"processor/logger"
@@ -15,8 +16,9 @@ import (
 
 type InputFileHandler struct {
 	pb.UnimplementedTransformServiceServer
-	InputFileNYCTrip *nyc_trip.InputFile
-	InputFileTesting *InputFileTesting
+	InputFileNYCTrip     *nyc_trip.InputFile
+	InputFileChicagoTrip *chicago_trip.InputFile
+	InputFileTesting     *InputFileTesting
 }
 
 type InputFileTesting struct {
@@ -31,6 +33,10 @@ func NewInputFileTesting(mapId *lib.MapId) *InputFileTesting {
 
 func (h *InputFileHandler) ProcessNYCTrip(ctx context.Context, req *pb.InputFileRequest) (*pb.ProcessFileResponse, error) {
 	return h.InputFileNYCTrip.ProcessNYCTrip(ctx, req)
+}
+
+func (h *InputFileHandler) ProcessChicagoTrip(ctx context.Context, req *pb.InputFileRequest) (*pb.ProcessFileResponse, error) {
+	return h.InputFileChicagoTrip.ProcessChicagoTrip(ctx, req)
 }
 
 func (h *InputFileHandler) ProcessTesting(ctx context.Context, req *pb.InputFileTestRequest) (*pb.ProcessFileTestResponse, error) {
