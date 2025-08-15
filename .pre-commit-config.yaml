@@ -17,6 +17,7 @@ repos:
     hooks:
       - id: black
         exclude: ^pipeline/protos/.*$
+        exclude: ^pipeline/migration/versions/.*$
   - repo: https://github.com/asottile/reorder-python-imports
     rev: v3.13.0
     hooks:
